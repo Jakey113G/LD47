@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{39E5BA58-4E95-95FC-C2F2-14BDB758CF82}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "LD47",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
