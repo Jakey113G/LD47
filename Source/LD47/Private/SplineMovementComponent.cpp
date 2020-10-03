@@ -43,10 +43,15 @@ void USplineMovementComponent::MoveActorAlongSplineByDistance(USplineComponent* 
 
 void USplineMovementComponent::SwitchSplineRoute(USplineComponent* newRoute)
 {
+	SwitchSplineRouteAtDistance(newRoute, 0.0f);
+}
+
+void USplineMovementComponent::SwitchSplineRouteAtDistance(USplineComponent* newRoute, float distanceAlongSpline)
+{
 	if (ActiveRoute != newRoute)
 	{
 		ActiveRoute = newRoute;
-		m_DistanceMovedAlongSpline = 0.f;
+		m_DistanceMovedAlongSpline = distanceAlongSpline;
 
 		if (ActiveRoute)
 		{

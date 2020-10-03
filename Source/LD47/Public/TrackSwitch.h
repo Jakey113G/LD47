@@ -24,10 +24,15 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Navigation")
 	UTrackSwapComponent* TrackSwapComponent;
 
+	UFUNCTION(BlueprintCallable, Category = "Navigation")
+	void SetIsSwitchActive(bool state);
+
+	UPROPERTY(EditAnywhere, Category = "Navigation")
+	bool IsSwitchActive;
+
+	UFUNCTION(BlueprintCallable, Category = "Navigation")
 	void OnActorEnteringSwitch(AActor* actor);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	bool IsSwitchActive;
 };

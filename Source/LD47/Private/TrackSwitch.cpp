@@ -11,6 +11,7 @@ ATrackSwitch::ATrackSwitch()
 	PrimaryActorTick.bCanEverTick = true;
 
 	TrackSwapComponent = CreateDefaultSubobject<UTrackSwapComponent>(TEXT("TrackSwapComponent"));
+	IsSwitchActive = false;
 }
 
 // Called when the game starts or when spawned
@@ -24,6 +25,11 @@ void ATrackSwitch::BeginPlay()
 void ATrackSwitch::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ATrackSwitch::SetIsSwitchActive(bool state)
+{
+	IsSwitchActive = state;
 }
 
 void ATrackSwitch::OnActorEnteringSwitch(AActor* actor)

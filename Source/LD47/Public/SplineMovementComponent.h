@@ -18,7 +18,10 @@ public:
 	USplineMovementComponent();
 
 	UFUNCTION(BlueprintCallable, Category = "Navigation")
-    void SwitchSplineRoute(USplineComponent* newRoute);
+    void SwitchSplineRoute(USplineComponent* newRoute);	
+	
+	UFUNCTION(BlueprintCallable, Category = "Navigation")
+    void SwitchSplineRouteAtDistance(USplineComponent* newRoute, float distanceAlongSpline);
 
 	UPROPERTY(EditAnywhere, Category = "Spawn")
 	AActor* InitialConnectedTrack;

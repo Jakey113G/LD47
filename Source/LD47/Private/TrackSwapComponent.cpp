@@ -12,7 +12,6 @@ UTrackSwapComponent::UTrackSwapComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
 	// ...
 }
 
@@ -45,7 +44,10 @@ void UTrackSwapComponent::ApplySwap(AActor* actor, bool useOtherTrack)
 		if (track)
 		{
 			auto splineComponent = track->FindComponentByClass<USplineComponent>();
-			splineMovement->SwitchSplineRoute(splineComponent);
+			
+			float indexKey = splineComponent->FindInputKeyClosestToWorldLocation(GetOwner()->GetActorLocation());
+			float distance = splineComponent->GetDistanceAlongSplineAtSplinePoint(round(indexKey));
+			splineMovement->SwitchSplineRouteAtDistance(splineComponent, distance);
 		}
 	}
 }
