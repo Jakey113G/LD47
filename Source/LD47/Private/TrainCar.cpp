@@ -2,6 +2,8 @@
 
 
 #include "TrainCar.h"
+#include "SplineMovementComponent.h"
+#include "Components/SplineComponent.h"
 
 // Sets default values
 ATrainCar::ATrainCar()
@@ -9,6 +11,7 @@ ATrainCar::ATrainCar()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SplineMovementComponent = CreateDefaultSubobject<USplineMovementComponent>(TEXT("SplineMovementComponent"));
 }
 
 // Called when the game starts or when spawned
@@ -22,6 +25,27 @@ void ATrainCar::BeginPlay()
 void ATrainCar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+}
+
+//void ATrainCar::PostInitializeComponents()
+//{
+//	Super::PostInitializeComponents();
+
+	//if (SplineMovementComponent && InitialConnectedTrack)
+	//{
+	//	auto component = InitialConnectedTrack->GetComponentsByClass<USplineComponent>();
+	//	SplineMovementComponent->SwitchSplineRoute(component);
+	//}
+//}
+
+void ATrainCar::JoinToFrontCar(AActor* a)
+{
+
+}
+
+void ATrainCar::DetachFromFront()
+{
 
 }
 

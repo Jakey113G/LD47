@@ -10,8 +10,10 @@ USplineMovementComponent::USplineMovementComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
+	bWantsInitializeComponent = true;
 
-	// ...
+	ActiveRoute = nullptr;
+	m_DistanceMovedAlongSpline = 0.f;
 }
 
 
@@ -30,7 +32,7 @@ void USplineMovementComponent::MoveActorAlongSplineByDistance(USplineComponent* 
 	FVector const wlocation = spline->GetWorldLocationAtDistanceAlongSpline(distance);
 	FVector const fDirection = spline->GetDirectionAtDistanceAlongSpline(distance, ESplineCoordinateSpace::World);
 	{
-		FVector const newRight = FVector::CrossProduct(fDirection, FVector::UpVector);
+		FVector const newRight = FVector::CrossProduct(fDirection, -FVector::UpVector);
 		FVector const newUp = FVector::CrossProduct(newRight, fDirection);
 		FMatrix const rotMatrix = FMatrix(fDirection, newRight, newUp, FVector::ZeroVector);
 
@@ -41,14 +43,14 @@ void USplineMovementComponent::MoveActorAlongSplineByDistance(USplineComponent* 
 
 void USplineMovementComponent::SwitchSplineRoute(USplineComponent* newRoute)
 {
-	if (m_ActiveRoute != newRoute)
+	if (ActiveRoute != newRoute)
 	{
-		m_ActiveRoute = newRoute;
+		ActiveRoute = newRoute;
 		m_DistanceMovedAlongSpline = 0.f;
 
-		if (m_ActiveRoute)
+		if (ActiveRoute)
 		{
-			MoveActorAlongSplineByDistance(m_ActiveRoute, m_DistanceMovedAlongSpline);
+			MoveActorAlongSplineByDistance(ActiveRoute, m_DistanceMovedAlongSpline);
 		}
 	}
 }
@@ -60,13 +62,29 @@ void USplineMovementComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
-	if (m_ActiveRoute)
+	if (ActiveRoute)
 	{
 		//add movement to existing travel distance along spline
 		float const additionaMovement = MovementSpeed * DeltaTime;
 		m_DistanceMovedAlongSpline += additionaMovement;
 
-		MoveActorAlongSplineByDistance(m_ActiveRoute, m_DistanceMovedAlongSpline);
+		//Loop if exceeded end
+		if (ActiveRoute->IsClosedLoop() && m_DistanceMovedAlongSpline > ActiveRoute->GetSplineLength())
+		{
+			m_DistanceMovedAlongSpline = ActiveRoute->GetSplineLength() - m_DistanceMovedAlongSpline;
+		}
+
+		MoveActorAlongSplineByDistance(ActiveRoute, m_DistanceMovedAlongSpline);
 	}
 }
 
+void USplineMovementComponent::InitializeComponent()
+{
+	Super::InitializeComponent();
+
+	if (InitialConnectedTrack)
+	{
+		auto splineComponent = InitialConnectedTrack->FindComponentByClass<USplineComponent>();
+		SwitchSplineRoute(splineComponent);
+	}
+}

@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "TrackSwitch.generated.h"
 
-class ATrack;
+class UTrackSwapComponent;
 
 UCLASS()
 class LD47_API ATrackSwitch : public AActor
@@ -17,18 +17,17 @@ public:
 	// Sets default values for this actor's properties
 	ATrackSwitch();
 
-	UPROPERTY(EditAnywhere, Category = "Navigation")
-    ATrack* TrackDefault;
-
-	UPROPERTY(EditAnywhere, Category = "Navigation")
-    ATrack* TrackOther;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, Category = "Navigation")
+	UTrackSwapComponent* TrackSwapComponent;
+
+	void OnActorEnteringSwitch(AActor* actor);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	bool IsSwitchActive;
 };

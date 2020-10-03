@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "TrainCar.generated.h"
 
+class USplineMovementComponent;
+
 UCLASS()
 class LD47_API ATrainCar : public AActor
 {
@@ -15,8 +17,23 @@ public:
 	// Sets default values for this actor's properties
 	ATrainCar();
 
+	UPROPERTY(EditAnywhere, Category = "Train")
+	USplineMovementComponent* SplineMovementComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Train")
+	AActor* TrackHead;
+
+	UPROPERTY(EditAnywhere, Category = "Train")
+	AActor* TrackTail;
+
+	UFUNCTION(BlueprintCallable, Category = "Train")
+	void JoinToFrontCar(AActor* train);
+
+	UFUNCTION(BlueprintCallable, Category = "Train")
+	void DetachFromFront();
+
+
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	

@@ -20,9 +20,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Navigation")
     void SwitchSplineRoute(USplineComponent* newRoute);
 
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+	AActor* InitialConnectedTrack;
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	virtual void InitializeComponent() override;
+
+
+	USplineComponent* ActiveRoute;
 
 public:	
 	// Called every frame
@@ -34,7 +40,6 @@ public:
 private:
 	void MoveActorAlongSplineByDistance(USplineComponent* spline, float distance) const;
 
-	USplineComponent* m_ActiveRoute;
 
 	float m_DistanceMovedAlongSpline;
 };

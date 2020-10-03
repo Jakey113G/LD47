@@ -2,7 +2,7 @@
 
 
 #include "TrackSwitch.h"
-#include "Track.h"
+#include "TrackSwapComponent.h"
 
 // Sets default values
 ATrackSwitch::ATrackSwitch()
@@ -10,6 +10,7 @@ ATrackSwitch::ATrackSwitch()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	TrackSwapComponent = CreateDefaultSubobject<UTrackSwapComponent>(TEXT("TrackSwapComponent"));
 }
 
 // Called when the game starts or when spawned
@@ -23,6 +24,10 @@ void ATrackSwitch::BeginPlay()
 void ATrackSwitch::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
 
+void ATrackSwitch::OnActorEnteringSwitch(AActor* actor)
+{
+	TrackSwapComponent->ApplySwap(actor, IsSwitchActive);
 }
 
