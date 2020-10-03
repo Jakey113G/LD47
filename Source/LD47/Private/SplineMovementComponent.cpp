@@ -90,6 +90,8 @@ void USplineMovementComponent::InitializeComponent()
 	if (InitialConnectedTrack)
 	{
 		auto splineComponent = InitialConnectedTrack->FindComponentByClass<USplineComponent>();
-		SwitchSplineRoute(splineComponent);
+		float indexKey = splineComponent->FindInputKeyClosestToWorldLocation(GetOwner()->GetActorLocation());
+		float distance = splineComponent->GetDistanceAlongSplineAtSplinePoint(round(indexKey));
+		SwitchSplineRouteAtDistance(splineComponent, distance);
 	}
 }
