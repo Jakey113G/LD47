@@ -4,21 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ObjectiveData.h"
-#include "ObjectiveCollect.generated.h"
+#include "ObjectiveSpawnPoint.generated.h"
 
-class ATrack;
 UCLASS()
-class LD47_API AObjectiveCollect : public AActor
+class LD47_API AObjectiveSpawnPoint : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AObjectiveCollect();
+	AObjectiveSpawnPoint();
 
-	UPROPERTY(EditAnywhere, Category = "Objective")
-	FObjectiveState ObjectiveToHandle;
+	UPROPERTY(EditAnywhere, Category = "Navigation")
+	ATrack* AssociatedTrack;
 
 protected:
 	// Called when the game starts or when spawned

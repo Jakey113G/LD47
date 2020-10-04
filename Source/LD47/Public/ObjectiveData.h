@@ -3,17 +3,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ObjectiveData.generated.h"
 
-/**
- * 
- */
-namespace ObjectiveColour
+
+UENUM(BlueprintType)
+enum class EObjectiveColourEnum : uint8
 {
-	enum Enum
-	{
-		Red,
-		Green,
-		Yelow,
-		Blue,
-	};
-}
+	Red,
+	Yellow,
+	Blue,
+};
+
+USTRUCT(BlueprintType)
+struct FObjectiveState
+{
+	GENERATED_USTRUCT_BODY()
+public:
+	FObjectiveState();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Objective")
+	bool bActive;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Objective")
+	EObjectiveColourEnum ObjectiveType;
+};

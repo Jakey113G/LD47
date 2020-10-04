@@ -3,3 +3,6 @@
 
 #include "ObjectiveData.h"
 
+FObjectiveState::FObjectiveState() : bActive(false), ObjectiveType(EObjectiveColourEnum::Red)
+{
+}
