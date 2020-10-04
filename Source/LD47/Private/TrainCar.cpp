@@ -35,3 +35,8 @@ void ATrainCar::SetCarryObjective(EObjectiveColourEnum objective)
 	OnRefreshTrainState.Broadcast();
 }
 
+void ATrainCar::ClearObjective()
+{
+	ObjectiveState.bActive = false;
+	OnRefreshTrainState.Broadcast();
+}

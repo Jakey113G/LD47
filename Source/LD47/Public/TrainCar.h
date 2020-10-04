@@ -30,6 +30,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Train")
 	void SetCarryObjective(EObjectiveColourEnum objective);
 
+	UFUNCTION(BlueprintCallable, Category = "Train")
+	void ClearObjective();
+
+
 	UPROPERTY(BlueprintAssignable, Category = "Objective")
 	FOnRefreshTrainStateDelegate OnRefreshTrainState;
 

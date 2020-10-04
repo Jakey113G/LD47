@@ -17,7 +17,7 @@ public:
 	// Sets default values for this actor's properties
 	AObjectiveCollect();
 
-	UPROPERTY(EditAnywhere, Category = "Objective")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Objective")
 	FObjectiveState ObjectiveToHandle;
 
 protected:
