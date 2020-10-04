@@ -4,9 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+
+#include "ObjectiveData.h"
 #include "TrainCar.generated.h"
 
 class USplineMovementComponent;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnRefreshTrainStateDelegate);
 
 UCLASS()
 class LD47_API ATrainCar : public AActor
@@ -19,6 +23,15 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Train")
 	USplineMovementComponent* SplineMovementComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Train")
+	FObjectiveState ObjectiveState;
+
+	UFUNCTION(BlueprintCallable, Category = "Train")
+	void SetCarryObjective(EObjectiveColourEnum objective);
+
+	UPROPERTY(BlueprintAssignable, Category = "Objective")
+	FOnRefreshTrainStateDelegate OnRefreshTrainState;
 
 protected:
 	virtual void BeginPlay() override;

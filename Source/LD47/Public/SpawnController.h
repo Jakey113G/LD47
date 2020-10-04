@@ -27,6 +27,8 @@ protected:
 	virtual void BeginPlay() override;
 
 	float m_elapsedTime;
+
+	int m_NextIndexToTry;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

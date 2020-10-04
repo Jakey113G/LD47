@@ -28,3 +28,10 @@ void ATrainCar::Tick(float DeltaTime)
 
 }
 
+void ATrainCar::SetCarryObjective(EObjectiveColourEnum objective)
+{
+	ObjectiveState.bActive = true;
+	ObjectiveState.ObjectiveType = objective;
+	OnRefreshTrainState.Broadcast();
+}
+

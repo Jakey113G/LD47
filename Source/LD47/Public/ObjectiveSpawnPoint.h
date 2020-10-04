@@ -29,7 +29,7 @@ public:
 	bool IsObjectiveSpawned();
 	void SetObjective(EObjectiveColourEnum value);
 
-	UPROPERTY(BlueprintAssignable, Category = "File Browser")
+	UPROPERTY(BlueprintAssignable, Category = "Objective")
 	FOnObjectiveSetDelegate OnObjectiveSet;
 
 protected:
