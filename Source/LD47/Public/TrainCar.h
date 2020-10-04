@@ -20,24 +20,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Train")
 	USplineMovementComponent* SplineMovementComponent;
 
-	UPROPERTY(EditAnywhere, Category = "Train")
-	AActor* TrackHead;
-
-	UPROPERTY(EditAnywhere, Category = "Train")
-	AActor* TrackTail;
-
-	UFUNCTION(BlueprintCallable, Category = "Train")
-	void JoinToFrontCar(AActor* train);
-
-	UFUNCTION(BlueprintCallable, Category = "Train")
-	void DetachFromFront();
-
-
 protected:
 	virtual void BeginPlay() override;
 
 public:	
-
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

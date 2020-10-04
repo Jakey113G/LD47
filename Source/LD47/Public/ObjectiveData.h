@@ -12,6 +12,7 @@ enum class EObjectiveColourEnum : uint8
 	Red,
 	Yellow,
 	Blue,
+	Green,
 
 	EnumCount,
 };

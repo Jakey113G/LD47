@@ -28,24 +28,3 @@ void ATrainCar::Tick(float DeltaTime)
 
 }
 
-//void ATrainCar::PostInitializeComponents()
-//{
-//	Super::PostInitializeComponents();
-
-	//if (SplineMovementComponent && InitialConnectedTrack)
-	//{
-	//	auto component = InitialConnectedTrack->GetComponentsByClass<USplineComponent>();
-	//	SplineMovementComponent->SwitchSplineRoute(component);
-	//}
-//}
-
-void ATrainCar::JoinToFrontCar(AActor* a)
-{
-
-}
-
-void ATrainCar::DetachFromFront()
-{
-
-}
-

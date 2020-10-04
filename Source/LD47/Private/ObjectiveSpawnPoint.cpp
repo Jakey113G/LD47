@@ -34,5 +34,7 @@ void AObjectiveSpawnPoint::SetObjective(EObjectiveColourEnum value)
 {
 	SpawnData.bActive = true;
 	SpawnData.ObjectiveType = value;
+
+	OnObjectiveSet.Broadcast();
 }
 

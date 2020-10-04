@@ -8,6 +8,8 @@
 
 #include "ObjectiveSpawnPoint.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnObjectiveSetDelegate);
+
 class ATrack;
 UCLASS()
 class LD47_API AObjectiveSpawnPoint : public AActor
@@ -21,10 +23,15 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Navigation")
 	ATrack* AssociatedTrack;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Objective")
 	FObjectiveState SpawnData;
 
 	bool IsObjectiveSpawned();
 	void SetObjective(EObjectiveColourEnum value);
+
+	UPROPERTY(BlueprintAssignable, Category = "File Browser")
+	FOnObjectiveSetDelegate OnObjectiveSet;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
