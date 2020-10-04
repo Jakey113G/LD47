@@ -4,20 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ObjectiveSpawnPoint.generated.h"
+#include "SpawnController.generated.h"
 
-class ATrack;
+//Not sure if this the best approach. but didn't want to waste time creating a CPP derived level BP or putting logic in player state.
+
 UCLASS()
-class LD47_API AObjectiveSpawnPoint : public AActor
+class LD47_API ASpawnController : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AObjectiveSpawnPoint();
+	ASpawnController();
 
-	UPROPERTY(EditAnywhere, Category = "Navigation")
-	ATrack* AssociatedTrack;
+	TArray<AActor*> FoundActors;
 
 protected:
 	// Called when the game starts or when spawned
