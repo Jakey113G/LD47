@@ -13,7 +13,7 @@ ASpawnController::ASpawnController()
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_elapsedTime = 0.0f;
-	SpawnTime = 30.0f;
+	SpawnTime = 18.0f;
 }
 
 // Called when the game starts or when spawned
@@ -22,6 +22,15 @@ void ASpawnController::BeginPlay()
 	Super::BeginPlay();
 	
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AObjectiveSpawnPoint::StaticClass(), FoundActors);
+	//int arraySize = FoundActors.Num();
+	//for (int32 i = 0; i <= arraySize; ++i)
+	//{
+	//	int32 Index = FMath::RandRange(i, arraySize);
+	//	if (i != Index)
+	//	{
+	//		FoundActors.Swap(i, Index);
+	//	}
+	//}
 }
 
 // Called every frame
@@ -42,7 +51,16 @@ void ASpawnController::Tick(float DeltaTime)
 
 void ASpawnController::SpawnObjective()
 {
-
+	for (int i = 0; i < FoundActors.Num(); ++i)
+	{
+		AObjectiveSpawnPoint * sp = Cast<AObjectiveSpawnPoint>(FoundActors[i]);
+		if (!sp->IsObjectiveSpawned())
+		{
+			EObjectiveColourEnum value = static_cast<EObjectiveColourEnum>(FMath::RandRange(0, (int)EObjectiveColourEnum::EnumCount));
+			sp->SetObjective(value);
+			return;
+		}
+	}
 }
 
 

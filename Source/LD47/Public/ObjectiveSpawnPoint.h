@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ObjectiveData.h"
+
 #include "ObjectiveSpawnPoint.generated.h"
 
 class ATrack;
@@ -19,6 +21,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Navigation")
 	ATrack* AssociatedTrack;
 
+	FObjectiveState SpawnData;
+
+	bool IsObjectiveSpawned();
+	void SetObjective(EObjectiveColourEnum value);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

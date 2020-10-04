@@ -12,6 +12,8 @@ enum class EObjectiveColourEnum : uint8
 	Red,
 	Yellow,
 	Blue,
+
+	EnumCount,
 };
 
 USTRUCT(BlueprintType)

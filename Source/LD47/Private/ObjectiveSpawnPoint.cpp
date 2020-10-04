@@ -25,3 +25,14 @@ void AObjectiveSpawnPoint::Tick(float DeltaTime)
 
 }
 
+bool AObjectiveSpawnPoint::IsObjectiveSpawned()
+{
+	return SpawnData.bActive;
+}
+
+void AObjectiveSpawnPoint::SetObjective(EObjectiveColourEnum value)
+{
+	SpawnData.bActive = true;
+	SpawnData.ObjectiveType = value;
+}
+
