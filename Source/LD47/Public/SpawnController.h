@@ -19,12 +19,17 @@ public:
 
 	TArray<AActor*> FoundActors;
 
+	UPROPERTY(EditAnywhere, Category = "SpawnRate")
+	float SpawnTime;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	float m_elapsedTime;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void SpawnObjective();
 };
